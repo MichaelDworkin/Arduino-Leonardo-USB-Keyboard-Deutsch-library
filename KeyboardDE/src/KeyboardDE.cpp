@@ -456,43 +456,43 @@ uint8_t p;
    switch (c)             // Befehle
     {
     case 0xb6:           //ö
-    c=0x33+136;
+    c=KEY_O_UMLAUT;
 p = press(c);  // Keydown
 release(c);            // Keyup
     break;
     case 0x96:           //Ö
-    c=0x33+136;   
+    c=KEY_O_UMLAUT;   
 press(KEY_LEFT_SHIFT);
 p = press(c);  // Keydown
 release(c);            // Keyup
 release(KEY_LEFT_SHIFT);   
     break;
     case 0xa4:           //ä
-    c=0x34+136;
+    c=KEY_A_UMLAUT;
 p = press(c);  // Keydown
 release(c);            // Keyup
     break; 
     case 0x84:           //Ä
-    c=0x34+136;   
+    c=KEY_A_UMLAUT;   
 press(KEY_LEFT_SHIFT);
 p = press(c);  // Keydown
 release(c);            // Keyup
 release(KEY_LEFT_SHIFT);   
     break;
         case 0xbc:           //ü
-    c=0x2F+136;
+    c=KEY_U_UMLAUT;
 p = press(c);  // Keydown
 release(c);            // Keyup
     break; 
     case 0x9c:           //Ü
-    c=0x2F+136;   
+    c=KEY_U_UMLAUT;   
 press(KEY_LEFT_SHIFT);
 p = press(c);  // Keydown
 release(c);            // Keyup
 release(KEY_LEFT_SHIFT);   
     break; 
 case 0x9f: //ß
-    c=0x2d+136;
+    c=KEY_ESZETT;
 p = press(c);  // Keydown
 release(c);            // Keyup
     break; 
