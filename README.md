@@ -16,5 +16,7 @@ Die Umlaute werden nur durch das Keyboard.print() funktion ausgegeben.
 Keyboard.press() und  Keyboard.release() müssen folgende konstanten übergeben werden
 KEY_O_UMLAUT
 KEY_A_UMLAUT
+
 KEY_U_UMLAUT
+
 KEY_ESZETT
