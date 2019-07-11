@@ -13,10 +13,14 @@ Bibliothek für Arduino/Genuino Leonardo und Micro ( ATmega32U4 )
 
 Die Umlaute werden nur durch das Keyboard.print() funktion ausgegeben.
 
-Keyboard.press() und  Keyboard.release() müssen folgende konstanten übergeben werden
+Beim Keyboard.press() und  Keyboard.release() müssen folgende konstanten übergeben werden:
+
 KEY_O_UMLAUT
+
 KEY_A_UMLAUT
 
 KEY_U_UMLAUT
 
 KEY_ESZETT
+
+Sie können für Keyboard.print() die Daten zum Beispiel von SD-Karte lesen. Wichtig dabei ist das die Textdatei im UTF 8 format angelegt ist.
