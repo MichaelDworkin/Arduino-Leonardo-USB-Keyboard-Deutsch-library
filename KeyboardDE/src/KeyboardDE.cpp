@@ -119,7 +119,7 @@ const uint8_t _asciimap[128] =
 	0x00,             // FS 
 	0x00,             // GS 
 	0x00,             // RS 
-	0x00,             //  US 
+	0x00,             // US 
 
 	0x2c,		   // 20 ' '
 	0x1e|SHIFT,	   // 21 !
@@ -317,7 +317,7 @@ const uint8_t _asciimap[128] =
 	0x1d|SHIFT,      // Y
 	0x1c|SHIFT,      // Z
 	0x25,          // [
-	0x2d,          // bslash
+	0x2D|0x86,          // bslash
 	0x26,          // ]
 	0x35,		    // ^
 	0x38|SHIFT,    // _
@@ -451,6 +451,15 @@ void Keyboard_::releaseAll(void)
 size_t Keyboard_::write(uint8_t c)
 {
 uint8_t p;
+if(c==0x5C)
+{
+c=KEY_ESZETT;
+press(KEY_RIGHT_ALT);	
+p = press(c);  // Keydown
+release(c);            // Keyup
+release(KEY_RIGHT_ALT);  
+return p;
+}
   if (UTF8)
   {
    switch (c)             // Befehle
@@ -501,7 +510,7 @@ release(c);            // Keyup
   }
   else
   {
-p = press(c);  // Keydown
+  p = press(c);  // Keydown
 	release(c);            // Keyup
  }
   if(c==0xC3) UTF8=1;
