@@ -451,70 +451,154 @@ void Keyboard_::releaseAll(void)
 size_t Keyboard_::write(uint8_t c)
 {
 uint8_t p;
-if(c==0x5C)
-{
-c=KEY_ESZETT;
-press(KEY_RIGHT_ALT);	
-p = press(c);  // Keydown
-release(c);            // Keyup
-release(KEY_RIGHT_ALT);  
-return p;
-}
-  if (UTF8)
-  {
-   switch (c)             // Befehle
-    {
-    case 0xb6:           //ö
-    c=KEY_O_UMLAUT;
-p = press(c);  // Keydown
-release(c);            // Keyup
-    break;
-    case 0x96:           //Ö
-    c=KEY_O_UMLAUT;   
-press(KEY_LEFT_SHIFT);
-p = press(c);  // Keydown
-release(c);            // Keyup
-release(KEY_LEFT_SHIFT);   
-    break;
-    case 0xa4:           //ä
-    c=KEY_A_UMLAUT;
-p = press(c);  // Keydown
-release(c);            // Keyup
-    break; 
-    case 0x84:           //Ä
-    c=KEY_A_UMLAUT;   
-press(KEY_LEFT_SHIFT);
-p = press(c);  // Keydown
-release(c);            // Keyup
-release(KEY_LEFT_SHIFT);   
-    break;
-        case 0xbc:           //ü
-    c=KEY_U_UMLAUT;
-p = press(c);  // Keydown
-release(c);            // Keyup
-    break; 
-    case 0x9c:           //Ü
-    c=KEY_U_UMLAUT;   
-press(KEY_LEFT_SHIFT);
-p = press(c);  // Keydown
-release(c);            // Keyup
-release(KEY_LEFT_SHIFT);   
-    break; 
-case 0x9f: //ß
-    c=KEY_ESZETT;
-p = press(c);  // Keydown
-release(c);            // Keyup
-    break; 
-    }
-  UTF8=0;
-  }
-  else
-  {
-  p = press(c);  // Keydown
-	release(c);            // Keyup
- }
-  if(c==0xC3) UTF8=1;
-	return p;              // just return the result of press() since release() almost always returns 1
+	//Serial.print("Number: "); 
+	//Serial.println(c);
+
+    switch (c)                  // c = ascii code of current char
+	{
+
+		case 0x40:              //@
+		    c=0x71;             // q
+		    press(KEY_RIGHT_ALT);	
+		    p = press(c);       
+		    release(c);            
+		    release(KEY_RIGHT_ALT);
+		    return p;
+
+        case 0x5B:              // [
+		    c=0x38;             // 8
+		    press(KEY_RIGHT_ALT);	
+		    p = press(c);  
+		    release(c);            
+		    release(KEY_RIGHT_ALT);
+		    return p;
+
+        case 0x5C:              // \
+		    c=KEY_ESZETT;       // ß
+		    press(KEY_RIGHT_ALT);	
+		    p = press(c);  
+		    release(c);            
+		    release(KEY_RIGHT_ALT);
+		    return p;
+
+        case 0x5D:              // ]
+		    c=0x39;             // 9
+		    press(KEY_RIGHT_ALT);	
+		    p = press(c);  
+		    release(c);            
+		    release(KEY_RIGHT_ALT);
+		    return p;
+
+        case 0x7B:              // {
+		    c=0x37;             // 7
+		    press(KEY_RIGHT_ALT);	
+		    p = press(c);  
+		    release(c);            
+		    release(KEY_RIGHT_ALT);
+		    return p;
+
+        case 0x7C:              // |
+		    c=0x3c;             // <
+		    press(KEY_RIGHT_ALT);	
+		    p = press(c);  
+		    release(c);            
+		    release(KEY_RIGHT_ALT);
+		    return p;
+
+	    case 0x7d:              // }
+		    c=0x30;             // <
+		    press(KEY_RIGHT_ALT);	
+		    p = press(c);  
+		    release(c);            
+		    release(KEY_RIGHT_ALT);
+		    return p
+
+	    case 0x7e:              // ~
+		    c=0x2b;             // +
+		    press(KEY_RIGHT_ALT);	
+		    p = press(c);  
+		    release(c);            
+		    release(KEY_RIGHT_ALT);
+		    return p;
+
+	    case 0xa7:              // §
+		    c=0x33;             // 3
+		    press(KEY_RIGHT_SHIFT);	
+		    p = press(c);  
+		    release(c);            
+		    release(KEY_RIGHT_SHIFT);
+		    return p;
+
+	
+	    case 0xC2:              // hmmm stupid workaraound before a paragraph char § ascii 194 is in the string...
+		    return 1;
+		
+	    case 0xC3: 
+            UTF8=1;
+	        return 1;           // taken from original code
+	}
+
+	if (UTF8)
+	{
+		switch (c)              // Befehle
+		{
+
+		case 0xb6:              //ö
+			c=KEY_O_UMLAUT;
+			p = press(c);  
+			release(c);            
+			break;
+
+		case 0x96:              //Ö
+			c=KEY_O_UMLAUT;   
+			press(KEY_LEFT_SHIFT);
+			p = press(c);  
+			release(c);            
+			release(KEY_LEFT_SHIFT);   
+			break;
+
+		case 0xa4:              //ä
+			c=KEY_A_UMLAUT;
+			p = press(c);  
+			release(c);            
+			break;
+ 
+		case 0x84:              //Ä
+			c=KEY_A_UMLAUT;   
+			press(KEY_LEFT_SHIFT);
+			p = press(c);  
+			release(c);            
+			release(KEY_LEFT_SHIFT);   
+			break;
+
+		case 0xbc:              //ü
+			c=KEY_U_UMLAUT;
+			p = press(c); 
+			release(c);            
+			break;
+
+		case 0x9c:              //Ü
+			c=KEY_U_UMLAUT;   
+			press(KEY_LEFT_SHIFT);
+			p = press(c);  
+			release(c);            
+			release(KEY_LEFT_SHIFT);   
+			break;
+ 
+		case 0x9f:              //ß
+			c=KEY_ESZETT;
+			p = press(c);  
+			release(c);         
+			break; 
+		}
+	
+		UTF8=0;
+	}
+	else
+	{
+		p = press(c);  // Keydown
+		release(c);            // Keyup
+	}
 }
 
 size_t Keyboard_::write(const uint8_t *buffer, size_t size) {
