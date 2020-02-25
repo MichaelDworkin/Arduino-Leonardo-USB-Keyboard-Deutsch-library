@@ -511,7 +511,7 @@ uint8_t p;
 		    p = press(c);  
 		    release(c);            
 		    release(KEY_RIGHT_ALT);
-		    return p
+		    return p;
 
 	    case 0x7e:              // ~
 		    c=0x2b;             // +
